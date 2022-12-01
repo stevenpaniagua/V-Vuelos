@@ -1,0 +1,62 @@
+﻿@page
+@model V_Vuelos.Pages.Login.RegisterModel
+@{
+}
+
+<br />
+<div align="center">
+    @if (Model.errorMessage.Length > 0)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>@Model.errorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h2><strong>¡Regístrate!</strong></h2>
+
+    <form class="needs-validation" novalidate method="POST">
+        <div class="form-group">
+            <input name="nombre" type="text" class="form-control" placeholder="Nombre"/>
+            <br />
+            <input name="apellido1" type="text" class="form-control" placeholder="Primer Apellido" />
+            <br />
+            <input name="apellido2" type="text" class="form-control" placeholder="Segundo Apellido" />
+            <br />
+            <input name="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
+            <br />
+            <input name="usuario" type="text" class="form-control" placeholder="Nombre de Usuario" />
+            <br />
+
+            <input id="contrasena" name="contrasena" type="password" class="form-control" placeholder="Contraseña">
+            <input type="checkbox" name="cbox" id="ckShowPass" onclick="toggle(this)"> Toggle Password Visibility</>
+            <script>
+                function toggle(e) {
+                    txtBox = $('#contrasena')
+                    if (e.checked) {
+                        txtBox.attr("Type", "Text");
+                    }
+                    else {
+                        txtBox.attr("Type", "Password");
+                    }
+                }
+            </script>
+        </div>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <br />
+
+        <div class="row mb-4">
+            <div class="offset-sm-4 col-sm-4 d-grid">
+                <button type="submit" class="btn btn-success">Create Account</button>
+            </div>
+        </div>
+    </form>
+</div>

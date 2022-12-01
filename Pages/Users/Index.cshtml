@@ -1,0 +1,55 @@
+﻿@page
+@model V_Vuelos.Pages.Cuentas.IndexModel
+@{
+    
+}
+
+@if (!IndexModel.logind || IndexModel.session.rol != 1 && IndexModel.session.rol < 3)
+{
+    <h3>:(</h3>
+    <p>
+        Please make sure your account has the <strong>required permission</strong> to access this page.
+    </p>
+    return;
+}
+
+<br/>
+<h2>List of Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Contraseña</th>
+            <th>Correo</th>
+            <th>Nombre</th>
+            <th>1er Apellido</th>
+            <th>2do Apellido</th>
+            <th>Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.usersList) {
+            <tr>
+                <td>@item.usuario</td>
+                <td>@item.contrasena</td>
+                <td>@item.correo</td>
+                <td>@item.nombre</td>
+                <td>@item.apellido1</td>
+                <td>@item.apellido2</td>
+                <td>@item.rol</td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Users/Edit?usuario=@item.usuario">
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="/Users/Delete?usuario=@item.usuario">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br/>
+<a class="btn btn-primary btn-sm" href='/Users/Create'>New User</a>

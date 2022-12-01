@@ -1,0 +1,48 @@
+﻿@page
+@model V_Vuelos.Pages.Management.Airlines.IndexModel
+@{
+}
+
+@if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
+{
+    <h3>:(</h3>
+    <p>
+        Please make sure your account has the <strong>required permission</strong> to access this page.
+    </p>
+    return;
+}
+
+<br />
+<h2>Registered Airlines</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country Code</th>
+            <th>Name</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.airlineList)
+        {
+            <tr>
+                <td>@item.cod_pais</td>
+                <td>@item.nombre</td>
+                <td>@item.cod</td>
+
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/Management/Airlines/Delete?cod=@item.cod">
+                        Delete
+                    </a>
+
+                    <a class="btn btn-outline-primary btn-sm" href="/Management/Airlines/Edit?puerta=@item.cod">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a class="btn btn-primary btn-sm" href='/Management/Airlines/Create'>Register Airline</a>

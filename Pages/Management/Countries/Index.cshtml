@@ -1,0 +1,49 @@
+﻿@page
+@using V_Vuelos.Pages.Tools.image
+@model V_Vuelos.Pages.Management.Countries.IndexModel
+@{
+}
+
+@if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
+{
+    <h3>:(</h3>
+    <p>
+        Please make sure your account has the <strong>required permission</strong> to access this page.
+    </p>
+    return;
+}
+
+<br />
+<h2>Registered Countries</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Logo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.countryList)
+        {
+            <tr>
+                <td>@item.cod</td>
+                <td>@item.nombre</td>
+                <td>Mantenimiento</td>
+
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/Management/Countries/Delete?pais=@item.nombre">
+                        Delete
+                    </a>
+
+                    <a class="btn btn-outline-primary btn-sm" href="/Management/Countries/Edit?puerta=@item.cod">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a class="btn btn-primary btn-sm" href='/Management/Countries/Create'>Register Country</a>

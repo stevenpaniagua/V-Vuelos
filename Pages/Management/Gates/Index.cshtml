@@ -1,0 +1,46 @@
+﻿@page
+@model V_Vuelos.Pages.Management.Gates.IndexModel
+@{
+}
+
+@if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
+{
+    <h3>:(</h3>
+    <p>
+        Please make sure your account has the <strong>required permission</strong> to access this page.
+    </p>
+    return;
+}
+
+<br />
+<h2>Registered Gates</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.gateList)
+        {
+            <tr>
+                <td>@item.cod</td>
+                <td>@item.estado</td>
+
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/Management/Gates/Delete?puerta=@item.cod">
+                        Delete
+                    </a>
+
+                    <a class="btn btn-outline-primary btn-sm" href="/Management/Gates/Edit?puerta=@item.cod">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a class="btn btn-primary btn-sm" href='/Management/Gates/Create'>Register Gate</a>

@@ -1,0 +1,28 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+	try
+	{
+		String puerta = Request.Query["puerta"];
+		string connectionString = "Data Source=DESKTOP-PGN2S2Q\\SQLEXPRESS;Initial Catalog=V-Vuelos;Integrated Security=True";
+
+		using (SqlConnection connection = new SqlConnection(connectionString))
+		{
+			connection.Open();
+
+			String sql = "DELETE FROM Puerta WHERE cod=@puerta";
+			using (SqlCommand command = new SqlCommand(sql, connection))
+			{
+				command.Parameters.AddWithValue("@puerta", puerta);
+				command.ExecuteNonQuery();
+			}
+		}
+		Response.Redirect("/Management/Gates/Index");
+
+	}
+	catch (Exception e)
+	{
+
+	}
+}

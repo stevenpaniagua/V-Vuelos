@@ -1,0 +1,23 @@
+﻿@page 
+@using System.Data.SqlClient;
+
+@{
+	try {
+		String usuario = Request.Query["usuario"];
+		string connectionString = "Data Source=DESKTOP-PGN2S2Q\\SQLEXPRESS;Initial Catalog=V-Vuelos;Integrated Security=True";
+
+		using(SqlConnection connection = new SqlConnection(connectionString)) {
+			connection.Open();
+
+			String sql = "DELETE FROM Cuenta WHERE usuario=@usuario";
+			using(SqlCommand command = new SqlCommand(sql, connection)) {
+				command.Parameters.AddWithValue("@usuario", usuario);
+				command.ExecuteNonQuery();
+			}
+		}
+		Response.Redirect("/Users/Index");
+
+	} catch(Exception e) {
+
+	}
+}

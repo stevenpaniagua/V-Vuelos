@@ -1,0 +1,83 @@
+﻿@page
+@model V_Vuelos.Pages.Users.CreateModel
+@{
+}
+
+@if(!IndexModel.logind || IndexModel.session.rol != 1 && IndexModel.session.rol < 3) {
+	<h3>:(</h3>
+	<p>
+		Please make sure your account has the <strong>required permission</strong> to access this page.
+	</p>
+	return;
+}
+
+<br />
+<h2>New User</h2>
+
+@if(Model.errorMessage.Length > 0) {
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
+<form method="POST">
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Usuario</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="usuario" value="@Model.userInfo.usuario"/>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Contraseña</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="contrasena" value="@Model.userInfo.contrasena" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Correo Electrónico</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="correo" value="@Model.userInfo.correo" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Nombre</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="nombre" value="@Model.userInfo.nombre" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">1er Apellido</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="apellido1" value="@Model.userInfo.apellido1" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">2do Apellido</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="apellido2" value="@Model.userInfo.apellido2" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Rol</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="rol" value="@Model.userInfo.rol" />
+		</div>
+	</div>
+
+	@if(Model.successMessage.Length > 0) {
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>@Model.successMessage</strong>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	}
+
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/Users" role="button">Cancel</a>
+		</div>
+	</div>
+</form>

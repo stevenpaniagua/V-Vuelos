@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static V_Vuelos.Pages.Management.Gates.IndexModel;
 using V_Vuelos.Pages.Tools.image;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Management.Gates
 {

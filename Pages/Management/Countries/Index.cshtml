@@ -2,6 +2,7 @@
 @using V_Vuelos.Pages.Tools.image
 @model V_Vuelos.Pages.Management.Countries.IndexModel
 @{
+    ViewData["Title"] = "Countries";
 }
 
 @if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
@@ -36,7 +37,7 @@
                         Delete
                     </a>
 
-                    <a class="btn btn-outline-primary btn-sm" href="/Management/Countries/Edit?puerta=@item.cod">
+                    <a class="btn btn-outline-primary btn-sm" href="/Management/Countries/Edit?pais=@item.nombre">
                         Edit
                     </a>
                 </td>

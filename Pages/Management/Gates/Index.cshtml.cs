@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Management.Gates
 {
@@ -38,12 +39,6 @@ namespace V_Vuelos.Pages.Management.Gates
             {
 
             }
-        }
-
-        public class GateInfo
-        {
-            public String cod;
-            public String estado;
         }
     }
 }

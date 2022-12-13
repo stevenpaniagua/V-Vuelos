@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using V_Vuelos.Page.Tools;
 using System.Reflection.PortableExecutable;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Shared
 {

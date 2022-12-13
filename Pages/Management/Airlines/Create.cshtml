@@ -1,6 +1,7 @@
 ﻿@page
 @model V_Vuelos.Pages.Management.Airlines.CreateModel
 @{
+	ViewData["Title"] = "New Airline";
 }
 
 @if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)

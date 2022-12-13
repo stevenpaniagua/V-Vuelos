@@ -1,6 +1,7 @@
 ﻿@page
 @model V_Vuelos.Pages.Users.CreateModel
 @{
+	ViewData["Title"] = "New User";
 }
 
 @if(!IndexModel.logind || IndexModel.session.rol != 1 && IndexModel.session.rol < 3) {

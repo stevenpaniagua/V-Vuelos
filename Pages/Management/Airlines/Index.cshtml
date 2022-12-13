@@ -1,6 +1,7 @@
 ﻿@page
 @model V_Vuelos.Pages.Management.Airlines.IndexModel
 @{
+    ViewData["Title"] = "Airlines";
 }
 
 @if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
@@ -35,7 +36,7 @@
                         Delete
                     </a>
 
-                    <a class="btn btn-outline-primary btn-sm" href="/Management/Airlines/Edit?puerta=@item.cod">
+                    <a class="btn btn-outline-primary btn-sm" href="/Management/Airlines/Edit?cod=@item.cod">
                         Edit
                     </a>
                 </td>

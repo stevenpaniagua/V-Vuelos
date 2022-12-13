@@ -1,7 +1,7 @@
 ﻿@page
 @model V_Vuelos.Pages.Cuentas.IndexModel
 @{
-    
+    ViewData["Title"] = "Users";
 }
 
 @if (!IndexModel.logind || IndexModel.session.rol != 1 && IndexModel.session.rol < 3)

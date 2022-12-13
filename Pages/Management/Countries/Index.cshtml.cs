@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Management.Countries
 {
@@ -38,13 +39,6 @@ namespace V_Vuelos.Pages.Management.Countries
             {
 
             }
-        }
-
-        public class CountryInfo
-        {
-            public String cod;
-            public String nombre;
-            public byte[] imagen;
         }
     }
 }

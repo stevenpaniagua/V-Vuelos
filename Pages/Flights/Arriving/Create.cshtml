@@ -1,0 +1,92 @@
+﻿@page
+@model V_Vuelos.Pages.Flights.Arriving.CreateModel
+@{
+	ViewData["Title"] = "New Arrival";
+}
+
+@if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)
+{
+	<h3>:(</h3>
+	<p>
+		Please make sure your account has the <strong>required permission</strong> to access this page.
+	</p>
+	return;
+}
+
+<br />
+<h2>Register Arriving Flight</h2>
+
+@if(Model.errorMessage.Length > 0) {
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
+<form method="POST" data-ajax="false" enctype="multipart/form-data">
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Código de Vuelo</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="cod" value="@Model.flightInfo.cod" />
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Código de Puerta</label>
+		<div class="col-sm-6">
+			<select id="cod_puerta" name="cod_puerta" class="form-control">
+				@foreach(var item in Model.gates) {
+					<option value="@item">@item</option>
+				}
+			</select>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Código de Aerolínea</label>
+		<div class="col-sm-6">
+			<select id="cod_aerolinea" name="cod_aerolinea" class="form-control">
+				@foreach(var item in Model.airlines) {
+					<option value="@item">@item</option>
+				}
+			</select>
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Estado</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="estado" value="@Model.flightInfo.estado" />
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Procedencia</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="procedencia" value="@Model.flightInfo.procedencia" />
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Fecha</label>
+		<div class="col-sm-6">
+			<input type="datetime-local" class="form-control" name="fecha" value="@Model.flightInfo.fecha" />
+		</div>
+	</div>
+
+	@if(Model.successMessage.Length > 0) {
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>@Model.successMessage</strong>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	}
+
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/Management/Airlines" role="button">Cancel</a>
+		</div>
+	</div>
+</form>

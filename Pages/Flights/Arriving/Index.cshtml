@@ -1,0 +1,73 @@
+﻿@page
+@model V_Vuelos.Pages.Flights.IndexModel
+@{
+    ViewData["Title"] = "Arrivals";
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#flightTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<div>
+    <h1>Arrivals</h1>
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Airline, code, status..." aria-label="Search flight..." aria-describedby="basic-addon2">
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Gate</th>
+            <th>Airline</th>
+            <th>Status</th>
+            <th>Arriving From</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="flightTable">
+        @foreach (var item in Model.flightsList)
+        {
+            <tr>
+                <td>@item.cod</td>
+                <td>@item.cod_puerta</td>
+                <td>@item.cod_aerolinea</td>
+                <td>@item.estado</td>
+                <td>@item.procedencia</td>
+                <td>@item.fecha</td>
+
+                @if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
+                {
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="/Flights/Arriving/Delete?cod=@item.cod">
+                            Delete
+                        </a>
+
+                        <a class="btn btn-outline-primary btn-sm" href="/Flights/Arriving/Edit?cod=@item.cod">
+                            Edit
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+@if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
+{
+    <a class="btn btn-primary btn-sm" href='/Flights/Arriving/Create'>Register New Flight</a>
+}

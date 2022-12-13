@@ -1,6 +1,7 @@
 ﻿@page
 @model V_Vuelos.Pages.Management.Countries.CreateModel
 @{
+	ViewData["Title"] = "New Country";
 }
 
 @if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol != 3 && Pages.IndexModel.session.rol < 3)

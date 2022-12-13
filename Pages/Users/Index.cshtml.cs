@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Cuentas
 {
@@ -42,16 +43,6 @@ namespace V_Vuelos.Pages.Cuentas
             {
 
             }
-        }
-
-        public class UserInfo
-        {
-            public String usuario;
-            public String contrasena;
-            public String correo;
-            public String nombre;
-            public String apellido1, apellido2;
-            public int rol;
         }
     }
 }

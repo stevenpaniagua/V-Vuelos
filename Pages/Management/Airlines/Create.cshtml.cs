@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 using V_Vuelos.Pages.Tools.image;
 using static V_Vuelos.Pages.Management.Airlines.IndexModel;
 using static V_Vuelos.Pages.Management.Countries.IndexModel;

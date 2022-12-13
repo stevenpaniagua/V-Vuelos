@@ -8,6 +8,7 @@ using System.Reflection.PortableExecutable;
 using V_Vuelos.Pages.Tools.image;
 using System.Drawing;
 using System.Web;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Management.Countries
 {

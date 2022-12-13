@@ -2,6 +2,7 @@ using System.Data.SqlClient;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 using V_Vuelos.Page.Tools;
 using V_Vuelos.Pages.Shared;
 using static V_Vuelos.Pages.Cuentas.IndexModel;

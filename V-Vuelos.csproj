@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Pages\Tools\encrypt\Encrypt.cs" />
+    <Content Include="Tools\encrypt\Encrypt.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Flights\" />
+    <Folder Include="Pages\Flights\Departing\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\China.jpg" />
+    <None Include="wwwroot\images\CostaRica.jpg" />
+    <None Include="wwwroot\images\Francia.jpg" />
+    <None Include="wwwroot\images\Italia.jpg" />
   </ItemGroup>
 
 </Project>

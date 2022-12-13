@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 
 namespace V_Vuelos.Pages.Management.Airlines
 {
@@ -39,13 +40,6 @@ namespace V_Vuelos.Pages.Management.Airlines
             {
 
             }
-        }
-
-        public class AirlineInfo
-        {
-            public String cod_pais;
-            public String nombre;
-            public String cod;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
+using V_Vuelos.Page.Tools;
 
 namespace V_Vuelos.Pages.Cuentas
 {
@@ -26,12 +27,12 @@ namespace V_Vuelos.Pages.Cuentas
                             while(reader.Read())
                             {
                                 UserInfo userInfo = new UserInfo();
-                                userInfo.usuario = reader.GetString(0);
+                                userInfo.usuario = Encrypt.decode(reader.GetString(0));
                                 userInfo.contrasena = reader.GetString(1);
-                                userInfo.correo = reader.GetString(2);
-                                userInfo.nombre = reader.GetString(3);
-                                userInfo.apellido1 = reader.GetString(4);
-                                userInfo.apellido2 = reader.GetString(5);
+                                userInfo.correo = Encrypt.decode(reader.GetString(2));
+                                userInfo.nombre = Encrypt.decode(reader.GetString(3));
+                                userInfo.apellido1 = Encrypt.decode(reader.GetString(4));
+                                userInfo.apellido2 = Encrypt.decode(reader.GetString(5));
                                 userInfo.rol = reader.GetInt32(6);
 
                                 usersList.Add(userInfo);

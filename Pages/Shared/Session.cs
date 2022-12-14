@@ -43,17 +43,17 @@ namespace V_Vuelos.Pages.Shared
                         {
                             while (reader.Read())
                             {
-                                string usuarioY = reader.GetString(0);
-                                string contrasenaY = reader.GetString(1);
+                                string usuarioY = Encrypt.decode(reader.GetString(0));
+                                string contrasenaY = Encrypt.decode(reader.GetString(1));
 
-                                if(usuarioX == usuarioY && contrasenaX == Encrypt.decode(contrasenaY))
+                                if(usuarioX == usuarioY && contrasenaX == contrasenaY)
                                 {
-                                    usuario = reader.GetString(0);
-                                    contrasena = reader.GetString(1);
-                                    correo = reader.GetString(2);
-                                    nombre = reader.GetString(3);
-                                    apellido1 = reader.GetString(4);
-                                    apellido2 = reader.GetString(5);
+                                    usuario = Encrypt.decode(reader.GetString(0));
+                                    contrasena = Encrypt.decode(reader.GetString(1));
+                                    correo = Encrypt.decode(reader.GetString(2));
+                                    nombre = Encrypt.decode(reader.GetString(3));
+                                    apellido1 = Encrypt.decode(reader.GetString(4));
+                                    apellido2 = Encrypt.decode(reader.GetString(5));
                                     rol = reader.GetInt32(6);
                                     IndexModel.logind = true;
                                 }

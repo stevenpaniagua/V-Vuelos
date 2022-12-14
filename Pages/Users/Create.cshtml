@@ -62,7 +62,12 @@
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Rol</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="rol" value="@Model.userInfo.rol" />
+			<select name="rol" class="form-control" required>
+                <option value="0">Cliente Regular</option>
+                <option value="1">Seguridad</option>
+                <option value="2">Seguridad y Consultas</option>
+				<option value="3">Administrador</option>
+            </select>
 		</div>
 	</div>
 

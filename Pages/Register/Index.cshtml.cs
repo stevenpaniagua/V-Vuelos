@@ -67,12 +67,12 @@ namespace V_Vuelos.Pages.Login
                             "(@usuario, @contrasena, @correo, @nombre, @apellido1, @apellido2, @rol)";
                         using (SqlCommand command = new SqlCommand(sql, connection))
                         {
-                            command.Parameters.AddWithValue("@usuario", userInfo.usuario);
+                            command.Parameters.AddWithValue("@usuario", Encrypt.encode(userInfo.usuario));
                             command.Parameters.AddWithValue("@contrasena", Encrypt.encode(userInfo.contrasena));
-                            command.Parameters.AddWithValue("@correo", userInfo.correo);
-                            command.Parameters.AddWithValue("@nombre", userInfo.nombre);
-                            command.Parameters.AddWithValue("@apellido1", userInfo.apellido1);
-                            command.Parameters.AddWithValue("@apellido2", userInfo.apellido2);
+                            command.Parameters.AddWithValue("@correo", Encrypt.encode(userInfo.correo));
+                            command.Parameters.AddWithValue("@nombre", Encrypt.encode(userInfo.nombre));
+                            command.Parameters.AddWithValue("@apellido1", Encrypt.encode(userInfo.apellido1));
+                            command.Parameters.AddWithValue("@apellido2", Encrypt.encode(userInfo.apellido2));
                             command.Parameters.AddWithValue("@rol", userInfo.rol);
 
                             command.ExecuteNonQuery();

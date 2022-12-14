@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
 using V_Vuelos.Models.Flights;
 
-namespace V_Vuelos.Pages.Flights
+namespace V_Vuelos.Pages.Flights.Departures
 {
     public class IndexModel : PageModel
     {
-        public List<ArrivingFlightInfo> flightsList = new List<ArrivingFlightInfo>();
+        public List<DepartingFlightInfo> flightsList = new List<DepartingFlightInfo>();
 
         public void OnGet()
         {
@@ -19,19 +19,19 @@ namespace V_Vuelos.Pages.Flights
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "SELECT * from Vuelos_Llegadas";
+                    String sql = "SELECT * from Vuelos_Salidas";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                ArrivingFlightInfo flightInfo = new ArrivingFlightInfo();
+                                DepartingFlightInfo flightInfo = new DepartingFlightInfo();
                                 flightInfo.cod = reader.GetString(0);
                                 flightInfo.cod_puerta = reader.GetString(1);
                                 flightInfo.cod_aerolinea = reader.GetString(2);
                                 flightInfo.estado = reader.GetString(3);
-                                flightInfo.procedencia = reader.GetString(4);
+                                flightInfo.destino = reader.GetString(4);
                                 flightInfo.fecha = reader.GetDateTime(5);
 
                                 flightsList.Add(flightInfo);

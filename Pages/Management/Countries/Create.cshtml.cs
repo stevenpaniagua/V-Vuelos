@@ -27,7 +27,7 @@ namespace V_Vuelos.Pages.Management.Countries
         {
             countryInfo.cod = Request.Form["cod"];
             countryInfo.nombre = Request.Form["nombre"];
-            countryInfo.imagen = ImageUtil.imageToByteArray(Image.FromFile("C:\\Users\\Steven\\source\\repos\\V-Vuelos\\Pages\\Image\\Logo.png"));
+            countryInfo.imagen = ImageUtil.imageToByteArray(Image.FromFile("C:\\Users\\Steven\\source\\repos\\V-Vuelos\\Images\\Logo.png"));
 
             if (countryInfo.cod.Length == 0 || countryInfo.nombre.Length == 0)
             {

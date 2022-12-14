@@ -1,5 +1,5 @@
 ﻿@page
-@model V_Vuelos.Pages.Flights.IndexModel
+@model V_Vuelos.Pages.Flights.Arrivals.IndexModel
 @{
     ViewData["Title"] = "Arrivals";
 }
@@ -51,11 +51,11 @@
                 @if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
                 {
                     <td>
-                        <a class="btn btn-danger btn-sm" href="/Flights/Arriving/Delete?cod=@item.cod">
+                        <a class="btn btn-danger btn-sm" href="/Flights/Arrivals/Delete?cod=@item.cod">
                             Delete
                         </a>
 
-                        <a class="btn btn-outline-primary btn-sm" href="/Flights/Arriving/Edit?cod=@item.cod">
+                        <a class="btn btn-outline-primary btn-sm" href="/Flights/Arrivals/Edit?cod=@item.cod">
                             Edit
                         </a>
                     </td>
@@ -69,5 +69,5 @@
 
 @if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
 {
-    <a class="btn btn-primary btn-sm" href='/Flights/Arriving/Create'>Register New Flight</a>
+    <a class="btn btn-primary btn-sm" href='/Flights/Arrivals/Create'>Register New Flight</a>
 }

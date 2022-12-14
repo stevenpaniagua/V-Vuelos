@@ -1,0 +1,62 @@
+﻿@page
+
+@{
+    ViewData["Title"] = "Checkout";
+    if(!Pages.IndexModel.logind) {
+        Response.Redirect("/Login");
+        return;
+    }
+}
+
+@section scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+}
+
+<div id="checkout">
+    <div class="row">
+      <div class="col-75">
+        <div class="container">
+          <form action="/action_page.php">
+
+            <div class="row">
+              <div class="col-25">
+                <h3>Information</h3>
+                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                <input type="text" id="name" name="name" placeholder="@IndexModel.session.nombre @IndexModel.session.apellido1 @IndexModel.session.apellido2" disabled>
+                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                <input type="text" id="email" name="email" placeholder="@IndexModel.session.correo" disabled>
+                <label for="code"><i class="fa fa-plane"></i> Flight Code</label>
+                <input type="text" id="code" name="code" placeholder="@Request.Query["cod"]" disabled>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-25">
+        <div class="container">
+          <h4>Cart
+            <span class="price" style="color:black">
+              <i class="fa fa-fighter-jet"></i>
+              <b>@Request.Query["amount"]</b>
+            </span>
+          </h4>
+            @{
+            int amount = Int32.Parse(Request.Query["amount"]);
+            for(int i = 0; i < amount; i++)
+              {
+                  <p>Ticket <span class="price">$200</span></p>
+              }
+            }
+          <hr>
+          @{
+              int total = 200 * Int32.Parse(Request.Query["amount"]);
+              <p>Total <span class="price" style="color:black"><b>$@total</b></span></p>
+          }
+
+          <input type="submit" value="Pay via Stripe" class="btn">
+        </div>
+      </div>
+    </div>
+</div>

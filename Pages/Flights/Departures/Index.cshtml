@@ -1,0 +1,135 @@
+﻿@page
+@using V_Vuelos.Models.Flights
+@model V_Vuelos.Pages.Flights.Departures.IndexModel
+@{
+    ViewData["Title"] = "Departures";
+    <input id="flightCode" value="" hidden/>
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#flightTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).on('click', '#payBtn', function() {
+            var code = $('#flightCode').val();
+            var cantidad = $('#cantidad').val();
+            var metodo = $('#metodoPago').val();
+
+            $(location).prop('href', '/Bookings/Pay?cod=' + code + "&amount=" + cantidad + "&method=" + metodo);
+        });
+    </script>
+
+    <script type="text/javascript">
+        function ShowModal(codigo) {
+            $('#flightCode').val(codigo);
+            $("#bookingModal").modal('show');
+        }
+
+        function HideModal() {
+            $("#bookingModal").modal('hide');
+        }
+
+        function Pay(cantidad) {
+            alert("Cantidad: " + cantidad);
+        }
+    </script>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<div>
+    <h1>Departures</h1>
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Airline, code, status..." aria-label="Search flight..." aria-describedby="basic-addon2">
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Gate</th>
+            <th>Airline</th>
+            <th>Status</th>
+            <th>Destination</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="flightTable">
+        @foreach (var item in Model.flightsList)
+        {
+            <tr>
+                <td>@item.cod</td>
+                <td>@item.cod_puerta</td>
+                <td>@item.cod_aerolinea</td>
+                <td>@item.estado</td>
+                <td>@item.destino</td>
+                <td>@item.fecha</td>
+                @if(Pages.IndexModel.logind) {
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-success" onclick="ShowModal('@item.cod')">Book</button>
+                    </td>
+                }
+
+                @if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
+                {
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="/Flights/Departures/Delete?cod=@item.cod">
+                            Delete
+                        </a>
+
+                        <a class="btn btn-outline-primary btn-sm" href="/Flights/Departures/Edit?cod=@item.cod">
+                            Edit
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+@if (Pages.IndexModel.logind && Pages.IndexModel.session.rol > 0)
+{
+    <a class="btn btn-primary btn-sm" href='/Flights/Departures/Create'>Register New Flight</a>
+}
+
+@* MODAL FOR BOOKINGS *@
+
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookingModalTitle"><i class="glyphicon glyphicon-send"></i>Book your Flight</h5>
+            </div>
+
+            <div class="modal-body">
+                <small id="cantidadHelp" class="form-text text-muted">How many tickets would you like? <strong>*</strong></small>
+                <select id="cantidad" aria-describedby="cantidadHelp" class="form-control" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <small id="metodoHelp" class="form-text text-muted">Which payment method fits you the best? <strong>*</strong></small>
+                <select id="metodoPago" aria-describedby="metodoHelp" class="form-control" required>
+                    <option value="easypay">Easy Pay</option>
+                    <option value="tarjeta">Credit/Debit Card</option>
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="HideModal()">Cancel</button>
+                <button type="button" class="btn btn-success" id="payBtn">Continue to Payment</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
 using V_Vuelos.Models.Flights;
 
-namespace V_Vuelos.Pages.Flights.Arriving
+namespace V_Vuelos.Pages.Flights.Arrivals
 {
     public class CreateModel : PageModel
     {

@@ -49,10 +49,10 @@ namespace V_Vuelos.Pages.Users
                         {
                             while (reader.Read())
                             {
-                                string usuario = reader.GetString(0);
-                                string contrasena = reader.GetString(1);
+                                string usuario = Encrypt.decode(reader.GetString(0));
+                                string contrasena = Encrypt.decode(reader.GetString(1));
 
-                                if (usuario == IndexModel.session.usuario && old == Encrypt.decode(contrasena))
+                                if (usuario == IndexModel.session.usuario && old == contrasena)
                                 {
                                     success = true;
                                     updatedUser = usuario;
@@ -67,7 +67,7 @@ namespace V_Vuelos.Pages.Users
 
                         using (SqlCommand cmd = new SqlCommand(sql2, connection))
                         {
-                            cmd.Parameters.AddWithValue("@usuario", updatedUser);
+                            cmd.Parameters.AddWithValue("@usuario", Encrypt.encode(updatedUser));
                             cmd.Parameters.AddWithValue("@contrasena", Encrypt.encode(pass));
                             cmd.ExecuteNonQuery();
                         }

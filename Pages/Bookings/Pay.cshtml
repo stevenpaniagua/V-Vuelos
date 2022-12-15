@@ -1,5 +1,5 @@
 ﻿@page
-
+@model V_Vuelos.Pages.Bookings.PayModel;
 @{
     ViewData["Title"] = "Checkout";
     if(!Pages.IndexModel.logind) {
@@ -11,6 +11,8 @@
 @section scripts {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+
+    <script src="https://js.stripe.com/v3/"></script>
 }
 
 <div id="checkout">
@@ -46,16 +48,19 @@
             int amount = Int32.Parse(Request.Query["amount"]);
             for(int i = 0; i < amount; i++)
               {
-                  <p>Ticket <span class="price">$200</span></p>
+                                                                                  <p>Ticket <span class="price">$200</span></p>
               }
             }
           <hr>
           @{
               int total = 200 * Int32.Parse(Request.Query["amount"]);
-              <p>Total <span class="price" style="color:black"><b>$@total</b></span></p>
+                                                                              <p>Total <span class="price" style="color:black"><b>$@total</b></span></p>
           }
-
-          <input type="submit" value="Pay via Stripe" class="btn">
+          
+          <form method="POST" data-ajax="false" enctype="multipart/form-data">
+              <button type="submit" class="btn btn-primary">Continue to Stripe</button>
+              <input type="text" value="@Model.sessionId" readonly/>
+          </form>
         </div>
       </div>
     </div>

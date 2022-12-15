@@ -9,6 +9,7 @@ using V_Vuelos.Pages.Tools.image;
 using System.Drawing;
 using System.Web;
 using V_Vuelos.Models;
+using V_Vuelos.Tools.bitacora;
 
 namespace V_Vuelos.Pages.Management.Countries
 {
@@ -59,6 +60,8 @@ namespace V_Vuelos.Pages.Management.Countries
                 errorMessage = e.Message;
                 return;
             }
+
+            LogHandler.log(LogHandler.LogType.AGREGAR, "Registered new COUNTRY (country code =" + countryInfo.cod + ")");
 
             countryInfo.cod = "";
             countryInfo.nombre = "";

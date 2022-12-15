@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
 using V_Vuelos.Models.Flights;
+using V_Vuelos.Tools.bitacora;
 
 namespace V_Vuelos.Pages.Flights.Arrivals
 {
@@ -99,6 +100,8 @@ namespace V_Vuelos.Pages.Flights.Arrivals
                 errorMessage = e.Message;
                 return;
             }
+
+            LogHandler.log(LogHandler.LogType.AGREGAR, "Registered new ARRIVAL (flight code =" + flightInfo.cod + ")");
 
             flightInfo.cod = "";
             flightInfo.cod_puerta = "";

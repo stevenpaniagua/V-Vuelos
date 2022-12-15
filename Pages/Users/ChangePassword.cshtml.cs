@@ -1,7 +1,9 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using V_Vuelos.Models;
 using V_Vuelos.Page.Tools;
+using V_Vuelos.Tools.bitacora;
 using static V_Vuelos.Pages.Cuentas.IndexModel;
 
 namespace V_Vuelos.Pages.Users
@@ -71,6 +73,7 @@ namespace V_Vuelos.Pages.Users
                             cmd.Parameters.AddWithValue("@contrasena", Encrypt.encode(pass));
                             cmd.ExecuteNonQuery();
                         }
+                        LogHandler.log(LogHandler.LogType.MODIFICAR, "Changed password (user =" + updatedUser + ")");
                         successMessage = "Successfully changed your password!";
                     }
                 }

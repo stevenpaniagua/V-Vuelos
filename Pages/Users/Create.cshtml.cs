@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
 using V_Vuelos.Page.Tools;
+using V_Vuelos.Tools.bitacora;
 using static V_Vuelos.Pages.Cuentas.IndexModel;
 
 namespace V_Vuelos.Pages.Users
@@ -63,6 +64,8 @@ namespace V_Vuelos.Pages.Users
                 errorMessage = e.Message;
                 return;
             }
+
+            LogHandler.log(LogHandler.LogType.AGREGAR, "Registered new USER (username =" + userInfo.usuario + ", email = " + userInfo.correo + ")");
 
             userInfo.usuario = "";
             userInfo.contrasena = "";

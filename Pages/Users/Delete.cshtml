@@ -1,5 +1,6 @@
 ﻿@page 
 @using System.Data.SqlClient;
+@using V_Vuelos.Tools.bitacora
 
 @{
 	try {
@@ -15,6 +16,7 @@
 				command.ExecuteNonQuery();
 			}
 		}
+		LogHandler.log(LogHandler.LogType.ELIMINAR, "Deleted USER (user =" + usuario + ")");
 		Response.Redirect("/Users/Index");
 
 	} catch(Exception e) {

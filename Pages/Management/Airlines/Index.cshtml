@@ -18,26 +18,22 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Code</th>
             <th>Country Code</th>
             <th>Name</th>
-            <th>Code</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.airlineList)
         {
             <tr>
+                <td>@item.cod</td>
                 <td>@item.cod_pais</td>
                 <td>@item.nombre</td>
-                <td>@item.cod</td>
 
                 <td>
                     <a class="btn btn-danger btn-sm" href="/Management/Airlines/Delete?cod=@item.cod">
                         Delete
-                    </a>
-
-                    <a class="btn btn-outline-primary btn-sm" href="/Management/Airlines/Edit?cod=@item.cod">
-                        Edit
                     </a>
                 </td>
             </tr>

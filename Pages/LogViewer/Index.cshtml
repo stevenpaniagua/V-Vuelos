@@ -1,0 +1,40 @@
+﻿@page
+@model V_Vuelos.Pages.LogViewer.IndexModel
+@{
+    ViewData["Title"] = "Logs";
+}
+
+@if (!Pages.IndexModel.logind || Pages.IndexModel.session.rol < 2)
+{
+    <h3>:(</h3>
+    <p>
+        Please make sure your account has the <strong>required permission</strong> to access this page.
+    </p>
+    return;
+}
+
+<br />
+<h1><i class="fa-regular fa-font-awesome"></i>Registered Logs</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Log ID</th>
+            <th>Performed by</th>
+            <th>Date</th>
+            <th>Log Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.logList)
+        {
+            <tr>
+                <td>@item.cod_registro</td>
+                <td>@item.usuario</td>
+                <td>@item.fecha</td>
+                <td>@item.tipo</td>
+                <td>@item.descripcion</td>
+            </tr>
+        }
+    </tbody>
+</table>

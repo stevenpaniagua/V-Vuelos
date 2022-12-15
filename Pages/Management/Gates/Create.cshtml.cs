@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using static V_Vuelos.Pages.Management.Gates.IndexModel;
 using V_Vuelos.Pages.Tools.image;
 using V_Vuelos.Models;
+using V_Vuelos.Tools.bitacora;
 
 namespace V_Vuelos.Pages.Management.Gates
 {
@@ -51,6 +52,8 @@ namespace V_Vuelos.Pages.Management.Gates
                 errorMessage = e.Message;
                 return;
             }
+
+            LogHandler.log(LogHandler.LogType.AGREGAR, "Registered new GATE (gate code =" + gateinfo.cod + ")");
 
             gateinfo.cod = "";
             gateinfo.estado = null;

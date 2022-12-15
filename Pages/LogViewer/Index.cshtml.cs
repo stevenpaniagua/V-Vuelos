@@ -2,12 +2,13 @@ using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using V_Vuelos.Models;
+using V_Vuelos.Page.Tools;
 
-namespace V_Vuelos.Pages.Management.Airlines
+namespace V_Vuelos.Pages.LogViewer
 {
     public class IndexModel : PageModel
     {
-        public List<AirlineInfo> airlineList = new List<AirlineInfo>();
+        public List<LogInfo> logList = new List<LogInfo>();
 
         public void OnGet()
         {
@@ -18,19 +19,23 @@ namespace V_Vuelos.Pages.Management.Airlines
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "SELECT * from Aerolinea";
+                    String sql = "SELECT * from Bitacora";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                AirlineInfo airlineInfo = new AirlineInfo();
-                                airlineInfo.cod = reader.GetString(0);
-                                airlineInfo.cod_pais = reader.GetString(1);
-                                airlineInfo.nombre = reader.GetString(2);
+                                LogInfo logInfo = new LogInfo
+                                {
+                                    cod_registro = reader.GetInt32(0),
+                                    usuario = Encrypt.decode(reader.GetString(1)),
+                                    fecha = reader.GetDateTime(2),
+                                    tipo = reader.GetInt32(3),
+                                    descripcion = Encrypt.decode(reader.GetString(4))
+                                };
 
-                                airlineList.Add(airlineInfo);
+                                logList.Add(logInfo);
                             }
                         }
                     }

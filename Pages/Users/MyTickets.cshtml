@@ -1,0 +1,25 @@
+﻿@page
+@model V_Vuelos.Pages.Users.MyTicketsModel
+@{
+	ViewData["Title"] = "My Tickets";
+}
+
+@section scripts {
+	<script>
+		<link rel="stylesheet" href= "~/css/Ticket.css" asp-append-version="true" />
+	</script>
+}
+
+@if (!IndexModel.logind)
+{
+	<h3>:(</h3>
+	<p>
+		It appears you have not <strong>logged into your account</strong> yet.
+	</p>
+	return;
+}
+
+<h1>Flight Tickets</h1>
+@foreach(var item in Model.ticketList) {
+    <p>TEST</p>
+}

@@ -1,5 +1,5 @@
 ﻿@page
-@model V_Vuelos.Pages.Bookings.PayModel;
+@using V_Vuelos.Tools.tickets
 @{
     ViewData["Title"] = "Checkout";
     if(!Pages.IndexModel.logind) {
@@ -13,6 +13,46 @@
     <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
 
     <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        //var stripe = Stripe("pk_test_51MFLTvHqn99Uu3sVBTbW8Pvjme6rmSJaEdpvMOg0E30z4tKYZ5x72MTTcGp3DBRPGudHwNBRzhPmQ3zQ41z78e0X00oVBT8kxV");
+        //$(document).on('click', '#payBtn', function() {
+        //    stripe.redirectToCheckout({
+        //        lineItems: [
+        //            {
+        //                price: "price_1MFOjiHqn99Uu3sVlEnQ0YUZ",
+        //                quantity: 1,
+        //            },
+        //        ],
+        //        mode: "payment",
+        //        successUrl: "https://www.google.com",
+        //        cancelUrl: "https://twitter.com",
+        //    }).then(function(result) {
+        //        alert(result);
+        //    });
+        //});
+    </script>
+
+    <script type="text/javascript">
+        function ShowModal() {
+            @{
+                string cod_vuelo = Request.Query["cod"];
+                int cantidad = Int32.Parse(Request.Query["amount"]);
+                string metodo = Request.Query["method"];
+
+                TicketHandler.purchase(cod_vuelo, cantidad, metodo);
+            }
+            $("#successModal").modal('show');
+        }
+
+        function HideModal() {
+            $("#successModal").modal('hide');
+        }
+
+        function Back() {
+            window.location.href = "/Flights/Departures/Index";
+        }
+    </script>
 }
 
 <div id="checkout">
@@ -48,20 +88,37 @@
             int amount = Int32.Parse(Request.Query["amount"]);
             for(int i = 0; i < amount; i++)
               {
-                                                                                  <p>Ticket <span class="price">$200</span></p>
+                  <p>Ticket <span class="price">$200</span></p>
               }
             }
           <hr>
           @{
               int total = 200 * Int32.Parse(Request.Query["amount"]);
-                                                                              <p>Total <span class="price" style="color:black"><b>$@total</b></span></p>
+              <p>Total <span class="price" style="color:black"><b>$@total</b></span></p>
           }
           
-          <form method="POST" data-ajax="false" enctype="multipart/form-data">
-              <button type="submit" class="btn btn-primary">Continue to Stripe</button>
-              <input type="text" value="@Model.sessionId" readonly/>
-          </form>
+          <button type="submit" class="btn btn-primary" id="#payBtn" onclick="ShowModal()">Continue to Stripe</button>
         </div>
       </div>
+    </div>
+</div>
+
+@* MODAL FOR SUCCESS *@
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalTitle"><i class="glyphicon glyphicon-send"></i>Thank you!</h5>
+            </div>
+
+            <div class="modal-body">
+                <h6>Your tickets have been successfully purchased.</h6>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="Back()">Got It!</button>
+            </div>
+        </div>
     </div>
 </div>
